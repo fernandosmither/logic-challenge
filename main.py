@@ -71,7 +71,6 @@ def compute25(digits_str:str) -> str:
     digits = [int(d) for d in digits_str]
     valid_exprs = {Expression(d, [d], str(d)) for d in digits}
     unexplored_exprs = list(valid_exprs)
-    DEBUG_while_counter = 0
     while unexplored_exprs and not contains_result(valid_exprs):
         expr = unexplored_exprs.pop(0)
         new_valid_exprs = set()
@@ -82,12 +81,6 @@ def compute25(digits_str:str) -> str:
                     new_valid_exprs.add(possible_expr)
                     unexplored_exprs.append(possible_expr)
         valid_exprs.update(new_valid_exprs)
-        print(f"While #{DEBUG_while_counter} - {len(valid_exprs)} valid expressions - {len(unexplored_exprs)} unexplored expressions")
-        DEBUG_while_counter += 1
-        # for e in valid_exprs:
-        #     print(e)
-        # if DEBUG_while_counter > 2:
-        #     break
 
     if contains_result(valid_exprs):
         for e in valid_exprs:
@@ -99,4 +92,3 @@ def compute25(digits_str:str) -> str:
 
 if __name__ == "__main__":
     print(compute25("6153"))
-    # print(sys.getsizeof(Expression(25, [1, 2, 3, 4], "25")))
