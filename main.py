@@ -42,15 +42,8 @@ def get_possible_expressions(expr: Expression, expr_2: Expression) -> Set[Expres
         div_expr = Expression(1, expr.used_digits + expr_2.used_digits, f"{expr.expr} // ({expr_2.expr})")
         if expr.value != 0:
             risky_exprs.add(div_expr)
-    # incremental_exprs = set()
-    # if expr.value + expr_2.value != 0:
-    #     incremental_exprs.add(Expression(expr.value + expr_2.value, expr.used_digits + expr_2.used_digits, f"{expr.expr} + ({expr_2.expr})"))
-    # if expr.value * expr_2.value != 0:
-    #     incremental_exprs.add(Expression(expr.value * expr_2.value, expr.used_digits + expr_2.used_digits, f"{expr.expr} * ({expr_2.expr})"))
 
     return {
-        # *incremental_exprs,
-        # *risky_exprs
         Expression(expr.value + expr_2.value, expr.used_digits + expr_2.used_digits, f"{expr.expr} + ({expr_2.expr})"),
         Expression(expr.value * expr_2.value, expr.used_digits + expr_2.used_digits, f"{expr.expr} * ({expr_2.expr})"),
         *risky_exprs
